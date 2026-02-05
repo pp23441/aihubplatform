@@ -1,0 +1,9 @@
+flask
+requests
+boto3
+PyGithub
+google-api-python-client
+openai
+geopy
+langchain
+pandas

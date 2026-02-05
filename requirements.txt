@@ -1,5 +1,6 @@
 gunicorn
 Flask
+python-dotenv
 requests
 boto3
 PyGithub

@@ -9,3 +9,4 @@ openai
 geopy
 langchain
 pandas
+markdown

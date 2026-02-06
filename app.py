@@ -6,6 +6,7 @@ import requests
 import markdown
 from uuid import uuid4
 
+
 # Load environment variables
 load_dotenv()
 
@@ -18,6 +19,7 @@ from app_modules import (
     job_finder,
     store_finder
 )
+
 
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY", "supersecretkey")
@@ -220,3 +222,4 @@ def store():
 # ---------------- RUN ----------------
 if __name__ == "__main__":
     app.run(debug=True)
+

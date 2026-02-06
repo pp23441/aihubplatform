@@ -1,6 +1,5 @@
-gunicorn
 Flask
-python-dotenv
+gunicorn
 requests
 boto3
 PyGithub
@@ -9,5 +8,5 @@ openai
 geopy
 langchain
 pandas
+python-dotenv
 markdown
-modules

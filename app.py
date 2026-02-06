@@ -6,7 +6,6 @@ import requests
 import markdown
 from uuid import uuid4
 
-
 # Load environment variables
 load_dotenv()
 

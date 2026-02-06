@@ -11,7 +11,7 @@ from uuid import uuid4
 load_dotenv()
 
 # Modules
-from modules import (
+from app_modules import (
     ai_chatbot,
     github_integration,
     aws_tools,

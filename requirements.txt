@@ -10,3 +10,4 @@ geopy
 langchain
 pandas
 markdown
+modules

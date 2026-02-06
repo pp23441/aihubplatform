@@ -1,6 +1,8 @@
-Flask
+flask
 gunicorn
 requests
+python-dotenv
+markdown
 boto3
 PyGithub
 google-api-python-client
@@ -8,6 +10,3 @@ openai
 geopy
 langchain
 pandas
-python-dotenv
-markdown
-modules

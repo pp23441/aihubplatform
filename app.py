@@ -11,7 +11,7 @@ from uuid import uuid4
 load_dotenv()
 
 # Modules
-from app_modules import (
+from modules import (
     ai_chatbot,
     github_integration,
     aws_tools,
@@ -19,6 +19,7 @@ from app_modules import (
     job_finder,
     store_finder
 )
+
 
 
 app = Flask(__name__)
@@ -222,4 +223,5 @@ def store():
 # ---------------- RUN ----------------
 if __name__ == "__main__":
     app.run(debug=True)
+
 

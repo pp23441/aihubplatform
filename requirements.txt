@@ -10,3 +10,4 @@ langchain
 pandas
 python-dotenv
 markdown
+modules

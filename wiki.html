@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<style>
+.card {
+    background: #020617;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    background: #020617;
+    color: #e5e7eb;
+}
+button {
+    background: #38bdf8;
+    color: #020617;
+    font-weight: bold;
+    cursor: pointer;
+}
+button:hover { background: #0ea5e9; }
+a { color: #38bdf8; }
+small { color: #94a3b8; }
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.history-item button {
+    width: auto;
+    padding: 4px 8px;
+}
+</style>
+
+<h1>📚 Wiki Search</h1>
+
+<!-- SEARCH -->
+<div class="card">
+    <h2>🔍 Search Wikipedia</h2>
+
+    <form method="GET">
+        <input
+            type="text"
+            name="q"
+            placeholder="Search any topic (India, AI, AWS...)"
+            value="{{ query or '' }}"
+            required
+        >
+        <button type="submit">🔎 Search</button>
+    </form>
+
+    <small>Powered by Wikipedia API</small>
+</div>
+
+<!-- HISTORY -->
+{% if history %}
+<div class="card">
+    <h2>🕘 Search History</h2>
+
+    {% for h in history %}
+        <div class="history-item">
+            <a href="/wiki?q={{ h }}">{{ h }}</a>
+
+            <form method="POST" action="/wiki/delete/{{ h }}">
+                <button style="background:#ef4444;color:white;">✖</button>
+            </form>
+        </div>
+    {% endfor %}
+
+    <form method="POST" action="/wiki/clear">
+        <button style="background:#f59e0b;color:black;margin-top:10px;">
+            🗑 Clear All History
+        </button>
+    </form>
+</div>
+{% endif %}
+
+<!-- RESULTS -->
+{% if result %}
+<div class="card">
+    <h2>📖 About {{ query }}</h2>
+
+    {% for item in result %}
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.snippet }}</p>
+        <a href="{{ item.url }}" target="_blank">🔗 Read on Wikipedia</a>
+        <hr style="border-color:#334155;">
+    {% endfor %}
+</div>
+
+{% elif query %}
+<div class="card">
+    <p>No results found for <strong>{{ query }}</strong>.</p>
+</div>
+{% endif %}
+
+{% endblock %}

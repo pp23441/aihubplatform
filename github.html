@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<style>
+.card {
+    background: #020617;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    background: #020617;
+    color: white;
+    border: 1px solid #334155;
+    border-radius: 6px;
+}
+button {
+    padding: 8px 14px;
+    background: #38bdf8;
+    border: none;
+    color: black;
+    border-radius: 6px;
+    cursor: pointer;
+}
+button:hover {
+    background: #0ea5e9;
+}
+</style>
+
+<h1>🐙 GitHub Dashboard</h1>
+
+<!-- GitHub Links -->
+<div class="card">
+    <h2>🔗 GitHub Links</h2>
+    <ul>
+        {% for link in github_links %}
+            <li>
+                <a href="{{ link.url }}" target="_blank" style="color:#38bdf8;">
+                    {{ link.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- Add Repository -->
+<div class="card">
+    <h2>➕ Add Repository Manually</h2>
+    <form method="POST" action="{{ url_for('add_repo') }}">
+        <label>Repository Name</label>
+        <input type="text" name="name" required>
+
+        <label>Repository URL</label>
+        <input type="url" name="url" required>
+
+        <label>Description</label>
+        <textarea name="description"></textarea>
+
+        <button type="submit">Add Repository</button>
+    </form>
+</div>
+
+<!-- Repository List -->
+<div class="card">
+    <h2>📦 Repositories</h2>
+
+    {% if repos %}
+        <ul>
+        {% for repo in repos %}
+            <li>
+                <a href="{{ repo.html_url }}" target="_blank" style="color:#38bdf8;">
+                    {{ repo.name }}
+                </a>
+                {% if repo.description %}
+                    — {{ repo.description }}
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No repositories found.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

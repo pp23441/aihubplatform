@@ -1,0 +1,106 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<style>
+    h1, h2 {
+        color: #38bdf8;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+    th, td {
+        padding: 10px;
+        border-bottom: 1px solid #334155;
+    }
+    th {
+        background: #1e293b;
+    }
+    tr:hover {
+        background: #020617;
+    }
+    .card {
+        background: #020617;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+    .btn {
+        padding: 6px 10px;
+        border-radius: 4px;
+        text-decoration: none;
+        color: white;
+        margin-right: 5px;
+    }
+    .start { background: #16a34a; }
+    .stop { background: #dc2626; }
+</style>
+
+<h1>☁ AWS Cloud Dashboard</h1>
+
+{% if not identity %}
+<div class="card">
+    <h2>⚠ AWS Credentials Not Found</h2>
+    <p>
+        No AWS credentials detected.<br><br>
+        ✔ Local machine → configure AWS CLI<br>
+        ✔ EC2 deployment → attach IAM Role
+    </p>
+</div>
+
+{% else %}
+
+<div class="card">
+    <h2>🧾 AWS Account</h2>
+    <p><b>Account:</b> {{ identity.Account }}</p>
+    <p><b>User / Role:</b> {{ identity.Arn }}</p>
+</div>
+
+<div class="card">
+    <h2>📦 Detected AWS Services</h2>
+    <ul>
+        {% for s in services %}
+            <li>{{ s }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="card">
+    <h2>🖥 EC2 Instances (Live)</h2>
+
+    {% if ec2_instances %}
+    <table>
+        <tr>
+            <th>Instance ID</th>
+            <th>Type</th>
+            <th>AZ</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+
+        {% for i in ec2_instances %}
+        <tr>
+            <td>{{ i.id }}</td>
+            <td>{{ i.type }}</td>
+            <td>{{ i.az }}</td>
+            <td>{{ i.state }}</td>
+            <td>
+                {% if i.state != "running" %}
+                <a class="btn start" href="/ec2/{{ i.id }}/start">Start</a>
+                {% endif %}
+                {% if i.state == "running" %}
+                <a class="btn stop" href="/ec2/{{ i.id }}/stop">Stop</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>No EC2 instances found.</p>
+    {% endif %}
+</div>
+
+{% endif %}
+
+{% endblock %}

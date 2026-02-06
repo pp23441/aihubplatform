@@ -1,0 +1,138 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<style>
+.card {
+    background: #020617;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    background: #020617;
+    color: #e5e7eb;
+}
+button {
+    background: #38bdf8;
+    color: #020617;
+    font-weight: bold;
+    cursor: pointer;
+}
+button:hover { background: #0ea5e9; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #334155;
+}
+th { background: #1e293b; }
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+.badge-verified { background: #16a34a; color: white; }
+.badge-gov { background: #2563eb; color: white; }
+
+a.apply-btn {
+    display: inline-block;
+    background: #22c55e;
+    color: black;
+    padding: 6px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+a.apply-btn:hover { background: #16a34a; }
+
+a.career-link {
+    font-size: 12px;
+    color: #38bdf8;
+}
+</style>
+
+<h1>💼 Job Finder</h1>
+
+<!-- SEARCH -->
+<div class="card">
+    <h2>🔍 Search Jobs</h2>
+    <form method="GET">
+        <input name="title" placeholder="Job / Tech (AI, Software, Data)">
+        <input name="company" placeholder="Company (Google, Tata, Infosys)">
+        <input name="location" placeholder="City, Country or Remote">
+
+        <select name="type">
+            <option value="">Any Job Type</option>
+            <option value="Full-Time">Full-Time</option>
+            <option value="Remote">Remote</option>
+            <option value="Internship">Internship</option>
+        </select>
+
+        <button type="submit">🚀 Find Jobs</button>
+    </form>
+</div>
+
+<!-- RESULTS -->
+<div class="card">
+    <h2>📄 Available Jobs</h2>
+
+    {% if jobs %}
+    <table>
+        <tr>
+            <th>Job</th>
+            <th>Company</th>
+            <th>Location</th>
+            <th>Type</th>
+            <th>Trust</th>
+            <th>Links</th>
+        </tr>
+
+        {% for job in jobs %}
+        <tr>
+            <td>{{ job.title }}</td>
+            <td>{{ job.company }}</td>
+            <td>{{ job.location }}</td>
+            <td>{{ job.type }}</td>
+            <td>
+                {% if job.verified %}
+                    <span class="badge badge-verified">✔ Verified</span>
+                {% endif %}
+                {% if job.government %}
+                    <span class="badge badge-gov">🏛 Government</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if job.apply_url %}
+                    <a class="apply-btn" href="{{ job.apply_url }}" target="_blank">Apply</a>
+                {% endif %}
+                <br>
+                {% if job.career_url %}
+                    <a class="career-link" href="{{ job.career_url }}" target="_blank">
+                        Company Careers
+                    </a>
+                {% endif %}
+                <br>
+                {% if job.search_url %}
+                    <a class="career-link" href="{{ job.search_url }}" target="_blank">
+                        🔍 Search jobs in this location
+                    </a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>No jobs found.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

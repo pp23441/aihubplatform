@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Hub Platform</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/chat">AI Chat</a></li>
+      <li><a href="/github">GitHub</a></li>
+      <li><a href="/aws">AWS</a></li>
+      <li><a href="/wiki">Wiki</a></li>
+      <li><a href="/jobs">Jobs</a></li>
+      <li><a href="/store">Store Finder</a></li>
+      <li><a href="/govjobs">Gov.uk Jobs</a></li>
+    </ul>
+  </nav>
+
+  <hr>
+  {% block content %}{% endblock %}
+
+</body>
+</html>

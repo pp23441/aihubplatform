@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Hub Platform</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #020617;
+            color: #e5e7eb;
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 240px;
+            background: #020617;
+            border-right: 1px solid #1e293b;
+            height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .sidebar h2 {
+            color: #38bdf8;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #e5e7eb;
+            text-decoration: none;
+            margin-bottom: 12px;
+            padding: 8px;
+            border-radius: 6px;
+        }
+
+        .sidebar a:hover {
+            background: #1e293b;
+        }
+
+        /* Main content */
+        .content {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>🚀 AI Hub</h2>
+    <a href="/">🏠 Home</a>
+    <a href="/chat">🤖 AI Chat</a>
+    <a href="/github">🐙 GitHub</a>
+    <a href="/aws">☁ AWS</a>
+    <a href="/wiki">📚 Wiki</a>
+    <a href="/jobs">💼 Jobs</a>
+    <a href="/store">🛒 Store</a>
+</div>
+
+<div class="content">
+    {% block content %}{% endblock %}
+</div>
+
+</body>
+</html>

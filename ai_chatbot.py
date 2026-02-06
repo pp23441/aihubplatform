@@ -6,7 +6,7 @@ from datetime import datetime
 from timezonefinder import TimezoneFinder
 from geopy.geocoders import Nominatim
 import pytz
-from modules import wiki_search
+from app_modules import wiki_search
 from bs4 import BeautifulSoup
 
 logging.basicConfig(level=logging.INFO)

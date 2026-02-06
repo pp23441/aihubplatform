@@ -1,0 +1,83 @@
+body {font-family: Arial, sans-serif; background-color: #f9fafb; text-align:center;}
+nav {background:#333; color:white; padding:10px;}
+nav a {color:white; margin:0 10px; text-decoration:none;}
+/* Navbar styling */
+.navbar {
+    position: fixed;       /* Stay on top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* Center menu */
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li {
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+.navbar ul li a:hover {
+    color: #00ffff; /* Highlight on hover */
+}
+
+/* Adjust content so it’s not hidden behind navbar */
+body.homepage .homepage-content {
+    padding-top: 120px; /* leave space for navbar */
+}
+
+/* Background and text (from previous homepage setup) */
+body.homepage {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url("/static/images/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    flex-direction: column;
+}
+
+body.homepage::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+.homepage-content {
+    text-align: center;
+    padding: 20px;
+}
+
+.homepage-content h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.homepage-content p {
+    font-size: 24px;
+}
+
